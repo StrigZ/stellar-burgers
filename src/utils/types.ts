@@ -16,6 +16,13 @@ export type TConstructorIngredient = TIngredient & {
   id: string;
 };
 
+export type TOwner = {
+  name: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type TOrder = {
   _id: string;
   status: string;
@@ -24,6 +31,17 @@ export type TOrder = {
   updatedAt: string;
   number: number;
   ingredients: string[];
+};
+
+export type TNewOrder = {
+  _id: string;
+  status: string;
+  name: string;
+  owner: TOwner;
+  createdAt: string;
+  updatedAt: string;
+  number: number;
+  price: number;
 };
 
 export type TOrdersData = {
