@@ -62,9 +62,7 @@ const App = () => {
             <Route path='/'>
               <Route index element={<ConstructorPage />} />
 
-              <Route path='feed'>
-                <Route index element={<Feed />} />
-              </Route>
+              <Route path='feed' element={<Feed />} />
 
               <Route
                 path='login'
@@ -108,16 +106,15 @@ const App = () => {
                     </ProtectedRoute>
                   }
                 />
-                <Route path='orders'>
-                  <Route
-                    index
-                    element={
-                      <ProtectedRoute>
-                        <ProfileOrders />
-                      </ProtectedRoute>
-                    }
-                  />
-                </Route>
+
+                <Route
+                  path='orders'
+                  element={
+                    <ProtectedRoute>
+                      <ProfileOrders />
+                    </ProtectedRoute>
+                  }
+                />
               </Route>
 
               <Route path='*' element={<NotFound404 />} />
