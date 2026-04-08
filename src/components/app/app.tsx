@@ -29,6 +29,7 @@ import { getIngredients } from '../../services/ingredients/ingredients-actions';
 import { getIngredientsSelector } from '../../services/ingredients/ingredients-slice';
 import { getUser } from '../../services/user/user-actions';
 import { getUserSelector } from '../../services/user/user-slice';
+import { OrderInfoModal } from '../order-info-modal';
 
 const App = () => {
   const { loading: isIngredientsLoading, error } = useSelector(
@@ -137,7 +138,7 @@ const App = () => {
               <Route
                 path='ingredients/:id'
                 element={
-                  <Modal title='' onClose={goBack}>
+                  <Modal title='Детали ингредиента' onClose={goBack}>
                     <IngredientDetails />
                   </Modal>
                 }
@@ -145,20 +146,14 @@ const App = () => {
 
               <Route
                 path='feed/:number'
-                element={
-                  <Modal title='' onClose={goBack}>
-                    <OrderInfo />
-                  </Modal>
-                }
+                element={<OrderInfoModal onClose={goBack} />}
               />
 
               <Route
                 path='profile/orders/:number'
                 element={
                   <ProtectedRoute>
-                    <Modal title='' onClose={goBack}>
-                      <OrderInfo />
-                    </Modal>
+                    <OrderInfoModal onClose={goBack} />
                   </ProtectedRoute>
                 }
               />
