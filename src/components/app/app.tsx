@@ -64,6 +64,17 @@ const App = () => {
 
               <Route path='feed' element={<Feed />} />
 
+              <Route path='feed/:number' element={<OrderInfo />} />
+              <Route path='ingredients/:id' element={<IngredientDetails />} />
+              <Route
+                path='profile/orders/:number'
+                element={
+                  <ProtectedRoute>
+                    <OrderInfo />
+                  </ProtectedRoute>
+                }
+              />
+
               <Route
                 path='login'
                 element={
