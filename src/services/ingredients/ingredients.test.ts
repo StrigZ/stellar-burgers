@@ -3,13 +3,12 @@ import { test } from '@jest/globals';
 import { getIngredientsApi } from '@api';
 import { configureStore, SerializedError } from '@reduxjs/toolkit';
 import { getIngredients } from './ingredients-actions';
-import { ingredientsSlice, initialState } from './ingredients-slice';
+import { initialState } from './ingredients-slice';
+import { rootReducer } from '../store';
 
 function createTestStore() {
   return configureStore({
-    reducer: {
-      ingredients: ingredientsSlice.reducer
-    }
+    reducer: rootReducer
   });
 }
 

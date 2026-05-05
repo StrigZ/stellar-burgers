@@ -1,15 +1,14 @@
 import { test } from '@jest/globals';
-import { feedSlice, initialState } from './feed-slice';
+import { initialState } from './feed-slice';
 
 import { getFeedsApi } from '@api';
 import { configureStore, SerializedError } from '@reduxjs/toolkit';
 import { getFeed } from './feed-actions';
+import { rootReducer } from '../store';
 
 function createTestStore() {
   return configureStore({
-    reducer: {
-      feed: feedSlice.reducer
-    }
+    reducer: rootReducer
   });
 }
 
