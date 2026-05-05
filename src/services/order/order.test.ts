@@ -3,8 +3,9 @@ import { orderBurgerApi, getOrderByNumberApi } from '@api';
 import { configureStore } from '@reduxjs/toolkit';
 import { getOrderById, makeOrder } from './order-actions';
 import { rootReducer } from '../store';
-import bun from '../../../mocks/bun.json';
-import ingredients from '../../../mocks/ingredients.json';
+import mockBun from '../../../mocks/bun.json';
+import mockIngredients from '../../../mocks/ingredients.json';
+import mockOrders from '../../../mocks/orders.json';
 
 jest.mock('@api', () => ({
   getOrderByNumberApi: jest.fn(),
@@ -23,8 +24,8 @@ function createTestStore() {
     reducer: rootReducer,
     preloadedState: {
       burgerConstructor: {
-        bun,
-        ingredients
+        bun: mockBun,
+        ingredients: mockIngredients
       }
     }
   });
@@ -51,30 +52,15 @@ describe('order thunks', () => {
   test('при успешном выполнении данные сохраняются, флаги сбрасываются', async () => {
     const orderData: Awaited<ReturnType<typeof getOrderByNumberApi>> = {
       success: true,
-      orders: [
-        {
-          _id: '',
-          status: '',
-          name: '',
-          createdAt: '',
-          updatedAt: '',
-          number: 1,
-          ingredients: []
-        }
-      ]
+      orders: mockOrders
     };
     const newOrderData: Awaited<ReturnType<typeof orderBurgerApi>> = {
       success: true,
       name: 'test',
       order: {
-        _id: '',
-        status: '',
-        name: '',
-        owner: { name: '', email: '', createdAt: '', updatedAt: '' },
-        createdAt: '',
-        updatedAt: '',
-        number: 1,
-        price: 1
+        ...mockOrders[0],
+        owner: { name: '', createdAt: '', email: '', updatedAt: '' },
+        price: 0
       }
     };
 
