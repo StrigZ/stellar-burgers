@@ -4,6 +4,7 @@ import {
   addIngredient,
   burgerConstructorSlice,
   clearConstructor,
+  initialState,
   moveIngredientDown,
   moveIngredientUp,
   removeIngredient
@@ -19,56 +20,46 @@ describe('Тестирует редьюсер слайса burgerConstructor', (
 
     expect(newState).toBeDefined();
 
-    expect(newState).toEqual({ bun: null, ingredients: [] });
+    expect(newState).toEqual(initialState);
   });
   test('обработка экшена добавления ингредиента', () => {
-    const initialState = {
-      bun: null,
-      ingredients: []
-    };
-
     const newState = reducer(initialState, addIngredient(mockIngredients[0]));
     expect(newState).toEqual({ bun: null, ingredients: [mockIngredients[0]] });
   });
   test('обработка экшена добавления булки', () => {
-    const initialState = {
-      bun: null,
-      ingredients: []
-    };
-
     const newState = reducer(initialState, addBun(mockBun));
     expect(newState).toEqual({ bun: mockBun, ingredients: [] });
   });
 
   test('обработка экшена удаления ингредиента', () => {
-    const initialState = {
+    const testState = {
       bun: null,
       ingredients: [mockIngredients[0]]
     };
 
     const newState = reducer(
-      initialState,
+      testState,
       removeIngredient(mockIngredients[0].id)
     );
     expect(newState).toEqual({ bun: null, ingredients: [] });
   });
   test('обработка экшена удаления несуществующего ингредиента', () => {
-    const initialState = {
+    const testState = {
       bun: null,
       ingredients: [mockIngredients[0]]
     };
 
-    const newState = reducer(initialState, removeIngredient('test'));
+    const newState = reducer(testState, removeIngredient('test'));
     expect(newState).toEqual({ bun: null, ingredients: [mockIngredients[0]] });
   });
 
   test('обработка экшена изменения порядка ингредиента', () => {
-    const initialState = {
+    const testState = {
       bun: null,
       ingredients: [mockIngredients[0], mockIngredients[1], mockIngredients[0]]
     };
 
-    const newState = reducer(initialState, moveIngredientUp(1));
+    const newState = reducer(testState, moveIngredientUp(1));
     expect(newState).toEqual({
       bun: null,
       ingredients: [mockIngredients[1], mockIngredients[0], mockIngredients[0]]
@@ -81,13 +72,13 @@ describe('Тестирует редьюсер слайса burgerConstructor', (
     });
   });
   test('обработка экшена изменения порядка ингредиента, краевые случаи', () => {
-    const initialState = {
+    const testState = {
       bun: null,
       ingredients: [mockIngredients[0], mockIngredients[1], mockIngredients[0]]
     };
 
     //  поднимаем 1й элемент, ничего не должно произойти
-    const newState = reducer(initialState, moveIngredientUp(0));
+    const newState = reducer(testState, moveIngredientUp(0));
     expect(newState).toEqual({
       bun: null,
       ingredients: [mockIngredients[0], mockIngredients[1], mockIngredients[0]]
@@ -101,15 +92,12 @@ describe('Тестирует редьюсер слайса burgerConstructor', (
   });
 
   test('очистка конструктора', () => {
-    const initialState = {
+    const testState = {
       bun: null,
       ingredients: [mockIngredients[0], mockIngredients[1], mockIngredients[0]]
     };
 
-    const newState = reducer(initialState, clearConstructor());
-    expect(newState).toEqual({
-      bun: null,
-      ingredients: []
-    });
+    const newState = reducer(testState, clearConstructor());
+    expect(newState).toEqual(initialState);
   });
 });
