@@ -29,6 +29,14 @@ describe('Страница конструктора бургера', () => {
     cy.wait('@getIngredients');
   });
 
+  afterEach(() => {
+    cy.window().then((win) => {
+      win.localStorage.removeItem('refreshToken');
+      win.document.cookie =
+        'accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    });
+  });
+
   it('добавляет выбранную булку в конструктор', () => {
     cy.get<TIngredientsResponse>('@ingredients').then(
       ({ data: ingredients }) => {
