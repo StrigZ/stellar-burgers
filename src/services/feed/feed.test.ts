@@ -21,6 +21,8 @@ const mockedGetFeedsApi = getFeedsApi as jest.MockedFunction<
 >;
 
 test('при вызове экшена request isLoading меняется на true', async () => {
+  mockedGetFeedsApi.mockReturnValueOnce(new Promise(() => {}));
+
   const store = createTestStore();
   store.dispatch(getFeed());
   const state = store.getState().feed;

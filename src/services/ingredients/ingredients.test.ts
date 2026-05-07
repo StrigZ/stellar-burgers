@@ -25,6 +25,8 @@ beforeEach(() => {
 });
 
 test('при вызове экшена request isLoading меняется на true', async () => {
+  mockedGetIngredientsApi.mockReturnValueOnce(new Promise(() => {}));
+
   const store = createTestStore();
   store.dispatch(getIngredients());
   const state = store.getState().ingredients;
