@@ -1,0 +1,17 @@
+{
+   "success": true,
+   "name": "Test",
+   "order": {
+      "_id": "69fa15e0a64177001b334b42",
+      "ingredients": [
+         "643d69a5c3f7b9001cfa093d",
+         "643d69a5c3f7b9001cfa0949",
+         "643d69a5c3f7b9001cfa093d"
+      ],
+      "status": "done",
+      "name": "Экзо-плантаго флюоресцентный бургер",
+      "createdAt": "2026-05-05T16:08:00.436Z",
+      "updatedAt": "2026-05-05T16:08:00.524Z",
+      "number": 104970
+   }
+}
